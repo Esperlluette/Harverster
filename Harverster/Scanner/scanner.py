@@ -14,6 +14,13 @@ class Scanner():
                 "ip":"mac",
                 "ip":"mac",
             }
+            
+        to do : recover hostname, ip, mac address to asignate hostname to an ip and mac. 
+        1 get list of ip
+        2 get list of hostnames 
+        3 get list of macs 
+        4 combine them 
+        5 return the dictionnary  
 
         Args:
             ip_network (str): _description_
@@ -28,12 +35,7 @@ class Scanner():
         _mac_list = []
         # _hostname_list = []
         print(_except)
-        ## to do : recover hostname, ip, mac address to asignate hostname to an ip and mac. 
-        ## 1 get list of ip
-        ## 2 get list of hostnames 
-        ## 3 get list of macs 
-        ## 4 combine them 
-        ## 5 return the dictionnary  
+
         try: 
             print("scan")
             self.nm.scan(hosts=ip_network,arguments='-n -sP',timeout=15)
@@ -56,12 +58,7 @@ class Scanner():
         return self.nm[ip_addr]['tcp'].keys()
 
     def focus_on_machine_ip(self, ip_addr:str): 
-        """Scan a host given is parameter and then return a dict with :
-        {
-            "open port": "service:version",
-            "open port": "service:version"
-        }
-
+        """Scan a host given is parameter and return all opens ports and service attached
         Args:
             ip_addr (str): Host ip address 
         
@@ -73,19 +70,17 @@ class Scanner():
                           "version":"VERSION"}
         }
         """
-        
-        # Scan a host (ip address) 
-        # Extracts all open ports and their running services. and its version when possible 
-        # Build a dictionnary with all the open ports and service and version
 
-        try:
-            self.nm.scan(hosts=ip_addr)
-            if  self.nm['nmap']['scaninfo']['error']>0: 
-                return None
-            for element in self.nm["scan_result"]["nmap"]:
-                print(element)
-        except Exception as e:
-           return e
+            #### NOT FINISH YET DO NOT USE ###
+
+        # try:
+        #     self.nm.scan(hosts=ip_addr)
+        #     if  self.nm['nmap']['scaninfo']['error']>0: 
+        #         return None
+        #     for element in self.nm["scan_result"]["nmap"]:
+        #         print(element)
+        # except Exception as e:
+        #    return e
           
     def focus_on_machine_mac(self, ip_addr:str):
         pass
