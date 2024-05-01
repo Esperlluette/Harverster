@@ -4,7 +4,7 @@ class Scanner():
     def __init__(self):
         self.nm = nmap.PortScanner()
     
-    def network_scan_number_ip_mac_devices(self, ip_network:str):
+    def network_scan_number_ip_mac_devices(self, ip_network:str="192.168.1.0/24"):
         """ Return a dict with number of devices connectes and their ips 
             {
                 "number devices":X,
@@ -38,8 +38,10 @@ class Scanner():
 
         try: 
             print("scan")
-            self.nm.scan(hosts=ip_network,arguments='-n -sP',timeout=15)
+            self.nm.scan(hosts=ip_network,arguments='-n -sP')
+            print("scan ended")
         except Exception as e:
+            print(e)
             _except = e
         for element in self.nm.all_hosts():
             if 'mac' in self.nm[element]['addresses']:
@@ -83,4 +85,4 @@ class Scanner():
         #    return e
           
     def focus_on_machine_mac(self, ip_addr:str):
-        pass
+        passx
