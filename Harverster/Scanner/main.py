@@ -10,7 +10,7 @@ class App:
         self.scanner = Scanner()
 
         # setting title
-        root.title("undefined")
+        root.title("Network scanner")
 
         # setting window size
         width = 750
@@ -27,7 +27,7 @@ class App:
         GLabel_662["font"] = ft
         GLabel_662["fg"] = "#333333"
         GLabel_662["justify"] = "center"
-        GLabel_662["text"] = "Seahawk Harvester"
+        GLabel_662["text"] = "Network scanner"
         GLabel_662.place(x=40, y=20, width=265, height=30)
 
         # Button
@@ -61,8 +61,8 @@ class App:
             # Format the results as a JSON string
             json_results = "{\n"
             json_results += f'    "number devices": {len(results)},\n'
-            for ip, mac in results.items():
-                json_results += f'    "ip : {ip}": "mac : {mac}", hostname : \n'
+            for ip, addrs in results.items():
+                json_results += f'    "ip : {ip}": "mac : {addrs[0]}", hostname :{addrs[1]} \n'
             json_results = json_results.rstrip(',\n')  # Remove trailing comma and newline
             json_results += "\n}"
 

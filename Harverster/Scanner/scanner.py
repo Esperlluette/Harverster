@@ -32,8 +32,6 @@ class Scanner():
         """
         _dict= {}
         _except = None
-        _mac_list = []
-        # _hostname_list = []
         print(_except)
 
         try: 
@@ -47,9 +45,11 @@ class Scanner():
             if 'mac' in self.nm[element]['addresses']:
                 mac_address = self.nm[element]['addresses']['mac']
             else: 
-                mac_address = 'None'    
-            _mac_list.append(mac_address)
-            _dict[element] = mac_address 
+                mac_address = 'None'
+            hostname = self.nm[element]['hostnames'][0]['name']  
+            if hostname =="":
+                hostname = "Can't be fetched"
+            _dict[element] = [mac_address, hostname] 
         for element in _dict:
             print(f"IP: {element}, MAC: {_dict[element]}")
         return _dict
